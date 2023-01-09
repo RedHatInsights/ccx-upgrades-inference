@@ -35,18 +35,18 @@ class Risks(BaseModel):  # pylint: disable=too-few-public-methods
 
 class UpgradeApiResponse(BaseModel):  # pylint: disable=too-few-public-methods
     """
-    UpgradeApiResponse is the response for the upgrade-failure-prediction endpoint.
+    UpgradeApiResponse is the response for the upgrade-risks-prediction endpoint.
 
     Contain the result of the prediction: whether the upgrade will fail or not; and
     the predictors that the model detected as actual risks.
     """
 
     upgrade_recommended: bool
-    upgrade_failure_predictors: List[str]
+    upgrade_risks_predictors: List[str]
 
     class Config:  # pylint: disable=too-few-public-methods
         """Update the configuration with an example."""
 
         schema_extra = {
-            "example": {"upgrade_recommended": False, "upgrade_failure_predictors": EXAMPLE_RISKS}
+            "example": {"upgrade_recommended": False, "upgrade_risks_predictors": EXAMPLE_RISKS}
         }

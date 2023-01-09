@@ -7,8 +7,8 @@ from models import Risks, UpgradeApiResponse
 app = FastAPI()
 
 
-@app.get("/upgrade-failure-prediction", response_model=UpgradeApiResponse)
-async def upgrade_failure_prediction(risks: Risks):
+@app.get("/upgrade-risks-prediction", response_model=UpgradeApiResponse)
+async def upgrade_risks_prediction(risks: Risks):
     """Return the predition of an upgrade failure given a set of alerts and focs."""
     # TODO @jdiazsua (CCXDEV-9842): use a real model instead of a mocked response
-    return UpgradeApiResponse(upgrade_recommended=False, upgrade_failure_predictors=risks.risks)
+    return UpgradeApiResponse(upgrade_recommended=False, upgrade_risks_predictors=risks.risks)

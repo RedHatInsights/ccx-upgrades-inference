@@ -1,6 +1,6 @@
-# Upgrade Failure Predictions Inference Service
+# Upgrade Risks Predictions Inference Service
 
-This is the main reporsitory of the Upgrade Failure Predictions Inference service.
+This is the main reporsitory of the Upgrade Risks Predictions Inference service.
 
 Related Jira: [CCXDEV-9718](https://issues.redhat.com/browse/CCXDEV-9718)
 
@@ -17,7 +17,7 @@ Then run some requests against the server:
 
 ```
 curl -X 'GET' \
-  'http://127.0.0.1:8000/upgrade-failure-prediction' \
+  'http://127.0.0.1:8000/upgrade-risks-prediction' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{

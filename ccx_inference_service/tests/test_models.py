@@ -3,7 +3,7 @@
 from pydantic import ValidationError
 import pytest
 
-from models import Risks
+from ccx_inference_service.models import Risks
 
 
 class TestRisksValidation:  # pylint: disable=too-few-public-methods

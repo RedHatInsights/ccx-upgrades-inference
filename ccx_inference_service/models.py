@@ -3,7 +3,7 @@
 from typing import List
 from pydantic import BaseModel, validator  # pylint: disable=no-name-in-module
 
-from examples import EXAMPLE_RISKS
+from ccx_inference_service.examples import EXAMPLE_RISKS
 
 
 class Risks(BaseModel):  # pylint: disable=too-few-public-methods

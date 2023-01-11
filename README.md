@@ -4,6 +4,14 @@ This is the main reporsitory of the Upgrade Risks Predictions Inference service.
 
 Related Jira: [CCXDEV-9718](https://issues.redhat.com/browse/CCXDEV-9718)
 
+## Run it in containers
+
+Use `docker` or `podman`:
+
+```
+docker build -t ccx-inference-service . && docker run --rm -p 8000:8000 ccx-inference-service
+```
+
 ## Run it locally
 
 Change to the source folder and run the app using `uvicorn`:
@@ -12,6 +20,8 @@ Change to the source folder and run the app using `uvicorn`:
 cd src
 uvicorn main:app --reload
 ```
+
+---
 
 Then run some requests against the server:
 
@@ -22,7 +32,7 @@ curl -X 'GET' \
   -H 'Content-Type: application/json' \
   -d '{
   "risks": [
-    "foca|machine-config|Available",
+    "foc|machine-config|Available",
     "foc|version|Failing|ClusterOperatorDegraded",
     "alert|openshift-cluster-version|ClusterOperatorDown",
     "foc|machine-config|Degraded|MachineConfigDaemonFailed",

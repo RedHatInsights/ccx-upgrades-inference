@@ -23,9 +23,9 @@ appsFile:
   path: bonfire_configs/ephemeral_apps.yaml
 
 apps:
-- name: ccx-inference-service
+- name: ccx-upgrades-inference
   components:
-    - name:  ccx-inference-service
+    - name:  ccx-upgrades-inference
       host: local
       repo: .
       path: deploy/clowdapp.yaml

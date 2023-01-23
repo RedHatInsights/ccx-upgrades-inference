@@ -16,17 +16,17 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: ccx-inference-service
+  name: ccx-upgrades-inference
   labels:
-    app: ccx-inference-service
+    app: ccx-upgrades-inference
 objects:
 
 - apiVersion: cloud.redhat.com/v1alpha1
   kind: ClowdApp
   metadata:
-    name: ccx-inference-service
+    name: ccx-upgrades-inference
     labels:
-      app: ccx-inference-service
+      app: ccx-upgrades-inference
     annotations:
       ignore-check.kube-linter.io/minimum-three-replicas: "This app doesn't have that much traffic"
   spec:
@@ -78,9 +78,9 @@ objects:
   apiVersion: v1
   metadata:
     # TODO: add prometheus annotations when we have metrics available
-    name: ccx-inference-service-svc
+    name: ccx-upgrades-inference-svc
     labels:
-      app: ccx-inference-service
+      app: ccx-upgrades-inference
   spec:
     ports:
       - name: web
@@ -88,13 +88,13 @@ objects:
         protocol: TCP
         targetPort: 8000
     selector:
-      app: ccx-inference-service
+      app: ccx-upgrades-inference
     type: ClusterIP
 
 parameters:
 - description: Image name
   name: IMAGE
-  value: quay.io/cloudservices/ccx-inference-service
+  value: quay.io/cloudservices/ccx-upgrades-inference
 - description: Image tag
   name: IMAGE_TAG
   required: true

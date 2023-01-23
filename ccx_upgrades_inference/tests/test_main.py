@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from ccx_inference_service.main import app
+from ccx_upgrades_inference.main import app
 
 
 client = TestClient(app)

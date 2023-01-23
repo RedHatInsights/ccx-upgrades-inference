@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 
-from ccx_inference_service.models import Risks, UpgradeApiResponse
+from ccx_upgrades_inference.models import Risks, UpgradeApiResponse
 
 app = FastAPI()
 

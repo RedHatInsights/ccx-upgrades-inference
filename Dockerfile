@@ -1,8 +1,8 @@
 FROM registry.access.redhat.com/ubi8/python-39:1-73
 
-WORKDIR /ccx-inference-service
+WORKDIR /ccx-upgrades-inference
 
-COPY . /ccx-inference-service
+COPY . /ccx-upgrades-inference
 
 USER 0
 
@@ -14,4 +14,4 @@ USER 1001
 
 EXPOSE 8000
 
-CMD ["uvicorn", "ccx_inference_service.main:app", "--host=0.0.0.0", "--port=8000"]
+CMD ["uvicorn", "ccx_upgrades_inference.main:app", "--host=0.0.0.0", "--port=8000"]

@@ -9,7 +9,7 @@ Related Jira: [CCXDEV-9718](https://issues.redhat.com/browse/CCXDEV-9718)
 Use `docker` or `podman`:
 
 ```
-docker build -t ccx-inference-service . && docker run --rm -p 8000:8000 ccx-inference-service
+docker build -t ccx-upgrades-inference . && docker run --rm -p 8000:8000 ccx-upgrades-inference
 ```
 
 ## Run it locally

@@ -22,13 +22,13 @@ export NAMESPACE=$(bonfire namespace reserve)
 
 4. Deploy the renderer
 ```
-bonfire deploy -c deploy/test.yaml -n $NAMESPACE ccx-inference-service
+bonfire deploy -c deploy/test.yaml -n $NAMESPACE ccx-upgrades-inference
 ```
 
 5. Check the pod is deployed
 
 ```
-POD=`oc --namespace $NAMESPACE get pods | grep ccx-inference-service | awk '{print $1}'`
+POD=`oc --namespace $NAMESPACE get pods | grep ccx-upgrades-inference | awk '{print $1}'`
 oc --namespace $NAMESPACE logs $POD
 ```
 
@@ -44,7 +44,7 @@ Wait for the command prompt. Then run some requests:
 
 ```
 curl -s -X 'GET' \
-    'ccx-inference-service-svc:8000/upgrade-risks-prediction' \
+    'ccx-upgrades-inference-svc:8000/upgrade-risks-prediction' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
     -d '{"risks": ["foc|machine-config|Available"]}'

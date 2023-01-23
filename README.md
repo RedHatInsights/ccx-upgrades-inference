@@ -17,8 +17,7 @@ docker build -t ccx-upgrades-inference . && docker run --rm -p 8000:8000 ccx-upg
 Change to the source folder and run the app using `uvicorn`:
 
 ```
-cd src
-uvicorn main:app --reload
+uvicorn ccx_upgrades_inference.main:app --reload
 ```
 
 ---

@@ -19,7 +19,8 @@ class Risks(BaseModel):  # pylint: disable=too-few-public-methods
     risks: List[str]
 
     @validator("risks", each_item=True)
-    def check_is_foc_or_alert(cls, risk):  # pylint: disable=no-self-argument
+    @classmethod
+    def check_is_foc_or_alert(cls, risk):
         """Check the risk is of type 'foc' or 'alert'."""
         kind = risk.split("|")[0]
         assert kind in ["foc", "alert"], f"'{kind}' not in ['foc','alert']"

@@ -4,7 +4,14 @@ from fastapi import FastAPI
 
 from ccx_upgrades_inference.models import Risks, UpgradeApiResponse
 
+from prometheus_fastapi_instrumentator import Instrumentator
+
 app = FastAPI()
+
+
+@app.on_event("startup")
+async def expose_metrics():
+    Instrumentator().instrument(app).expose(app)
 
 
 @app.get("/upgrade-risks-prediction", response_model=UpgradeApiResponse)

@@ -11,6 +11,7 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def expose_metrics():
+    """Expose the prometheus metrics in the /metrics endpoint."""
     Instrumentator().instrument(app).expose(app)
 
 

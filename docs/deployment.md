@@ -20,9 +20,9 @@ oc login --token=${TOKEN} --server=<ephemeral cluster>
 export NAMESPACE=$(bonfire namespace reserve)
 ```
 
-4. Deploy the renderer
+4. Deploy the inference service
 ```
-bonfire deploy -c deploy/test.yaml -n $NAMESPACE ccx-upgrades-inference
+bonfire deploy -c deploy/test.yaml -n $NAMESPACE ccx-data-pipeline
 ```
 
 5. Check the pod is deployed
@@ -32,7 +32,7 @@ POD=`oc --namespace $NAMESPACE get pods | grep ccx-upgrades-inference | awk '{pr
 oc --namespace $NAMESPACE logs $POD
 ```
 
-6. Make a request to the renderer
+6. Make a request to the inference service
 
 Launch a debugging pod with curl installed:
 ```

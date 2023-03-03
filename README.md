@@ -30,14 +30,15 @@ curl -X 'GET' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "risks": [
-    "foc|machine-config|Available",
-    "foc|version|Failing|ClusterOperatorDegraded",
-    "alert|openshift-cluster-version|ClusterOperatorDown",
-    "foc|machine-config|Degraded|MachineConfigDaemonFailed",
-    "alert|openshift-sdn|TargetDown|sdn",
-    "alert|openshift-cluster-version|ClusterOperatorDegraded",
-    "alert|kube-system|TargetDown|kubelet"
+  "alerts": [
+    {
+      "name": "APIRemovedInNextEUSReleaseInUse",
+      "namespace": "openshift-kube-apiserver",
+      "severity": "info"
+    }
+  ],
+  "operator_conditions": [
+    {"name": "authentication", "condition": "Failing", "reason": "AsExpected"}
   ]
 }'
 ```

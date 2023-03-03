@@ -1,37 +1,42 @@
 """Models to be used in the REST API."""
 
-from typing import List
-from pydantic import BaseModel, validator  # pylint: disable=no-name-in-module
+from typing import List, Optional
+from pydantic import BaseModel  # pylint: disable=no-name-in-module
 
-from ccx_upgrades_inference.examples import EXAMPLE_RISKS
+from ccx_upgrades_inference.examples import EXAMPLE_ALERT, EXAMPLE_FOC, EXAMPLE_PREDICTORS
 
 
-class Risks(BaseModel):  # pylint: disable=too-few-public-methods
-    """
-    Contain a list of alerts and focs.
+class Alert(BaseModel):  # pylint: disable=too-few-public-methods
+    """Alert containing name, namespace and severity."""
 
-    The format must be:
-        alert|{NAME}|{NAMESPACE}|{SEVERITY}
-    or
-        foc|{NAME}|{CONDITION}|{REASON}
-    """
-
-    risks: List[str]
-
-    @validator("risks", each_item=True)
-    @classmethod
-    def check_is_foc_or_alert(cls, risk):
-        """Check the risk is of type 'foc' or 'alert'."""
-        kind = risk.split("|")[0]
-        assert kind in ["foc", "alert"], f"'{kind}' not in ['foc','alert']"
-        return risk
-
-    # TODO @jdiazsua: Add more data validators once we have the real model
+    name: str
+    namespace: Optional[str]
+    severity: str
 
     class Config:  # pylint: disable=too-few-public-methods
         """Update the configuration with an example."""
 
-        schema_extra = {"example": {"risks": EXAMPLE_RISKS}}
+        schema_extra = {"example": {"alert": EXAMPLE_ALERT}}
+
+
+class FOC(BaseModel):  # pylint: disable=too-few-public-methods
+    """Failing Operator Condition containing name, condition and reason."""
+
+    name: str
+    condition: str
+    reason: Optional[str]
+
+    class Config:  # pylint: disable=too-few-public-methods
+        """Update the configuration with an example."""
+
+        schema_extra = {"example": {"foc": EXAMPLE_FOC}}
+
+
+class UpgradeRisksPredictors(BaseModel):
+    """A dict containing list of alerts and FOCs."""
+
+    alerts: List[Alert]
+    operator_conditions: List[FOC]
 
 
 class UpgradeApiResponse(BaseModel):  # pylint: disable=too-few-public-methods
@@ -43,11 +48,14 @@ class UpgradeApiResponse(BaseModel):  # pylint: disable=too-few-public-methods
     """
 
     upgrade_recommended: bool
-    upgrade_risks_predictors: List[str]
+    upgrade_risks_predictors: UpgradeRisksPredictors
 
     class Config:  # pylint: disable=too-few-public-methods
         """Update the configuration with an example."""
 
         schema_extra = {
-            "example": {"upgrade_recommended": False, "upgrade_risks_predictors": EXAMPLE_RISKS}
+            "example": {
+                "upgrade_recommended": False,
+                "upgrade_risks_predictors": EXAMPLE_PREDICTORS,
+            },
         }

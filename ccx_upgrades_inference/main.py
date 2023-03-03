@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 
-from ccx_upgrades_inference.models import Risks, UpgradeApiResponse
+from ccx_upgrades_inference.models import UpgradeApiResponse, UpgradeRisksPredictors
 
 from prometheus_fastapi_instrumentator import Instrumentator
 
@@ -16,7 +16,8 @@ async def expose_metrics():
 
 
 @app.get("/upgrade-risks-prediction", response_model=UpgradeApiResponse)
-async def upgrade_risks_prediction(risks: Risks):
+async def upgrade_risks_prediction(risk_predictors: UpgradeRisksPredictors):
     """Return the predition of an upgrade failure given a set of alerts and focs."""
+    print(risk_predictors)
     # TODO @jdiazsua (CCXDEV-9842): use a real model instead of a mocked response
-    return UpgradeApiResponse(upgrade_recommended=False, upgrade_risks_predictors=risks.risks)
+    return UpgradeApiResponse(upgrade_recommended=False, upgrade_risks_predictors=risk_predictors)

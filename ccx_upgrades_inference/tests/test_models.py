@@ -1,26 +1,30 @@
 """Test models.py."""
 
-from pydantic import ValidationError
-import pytest
-
-from ccx_upgrades_inference.models import Risks
+from ccx_upgrades_inference.models import Alert, FOC, UpgradeApiResponse
+from ccx_upgrades_inference.examples import EXAMPLE_PREDICTORS
 
 
-class TestRisksValidation:  # pylint: disable=too-few-public-methods
-    """Check the validators of Risks."""
+def test_alert():
+    """Test the alert can be created and the fields are populated."""
+    alert = Alert(name="name", namespace="namespace", severity="severity")
 
-    class TestIsFocOrAlert:  # pylint: disable=too-few-public-methods
-        """Test the check_is_foc_or_alert validator."""
+    assert alert.name == "name"
+    assert alert.namespace == "namespace"
+    assert alert.severity == "severity"
 
-        def test_is_foc(self):
-            """Check it can be instantiated if is of kind 'foc'."""
-            Risks(risks=["foc|others"])
 
-        def test_is_alert(self):
-            """Check it can be instantiated if is of kind 'alert'."""
-            Risks(risks=["alert|others"])
+def test_foc():
+    """Test the foc can be created and the fields are populated."""
+    foc = FOC(name="name", condition="condition", reason="reason")
 
-        def test_no_foc_or_alert(self):
-            """Check it fails if kind not in ['foc', 'alert']."""
-            with pytest.raises(ValidationError):
-                Risks(risks=["test|others"])
+    assert foc.name == "name"
+    assert foc.condition == "condition"
+    assert foc.reason == "reason"
+
+
+def test_upgrade_api_response():
+    """Test the UpgradeApiResponse can be created and fields are populated."""
+    response = UpgradeApiResponse(
+        upgrade_recommended=False, upgrade_risks_predictors=EXAMPLE_PREDICTORS
+    )
+    assert response.upgrade_risks_predictors == EXAMPLE_PREDICTORS

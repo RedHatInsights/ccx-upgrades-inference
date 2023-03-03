@@ -3,6 +3,7 @@
 from fastapi.testclient import TestClient
 
 from ccx_upgrades_inference.main import app
+from ccx_upgrades_inference.examples import EXAMPLE_PREDICTORS
 
 
 client = TestClient(app)
@@ -23,26 +24,13 @@ class TestUpgradeRisksPrediction:  # pylint: disable=too-few-public-methods
         assert response.status_code == 422
         assert response.json()["detail"][0]["msg"] == "field required"
 
-    def test_invalid_risk(self):
-        """If the request has an invalid risk it should complain."""
-        response = client.request(
-            "GET", "/upgrade-risks-prediction", json={"risks": ["test|others"]}
-        )
-        assert response.status_code == 422
-        assert response.json()["detail"][0]["msg"] == "'test' not in ['foc','alert']"
-
-    def test_empty_risks(self):
-        """If the request has no risks it shouldn't complain."""
-        response = client.request("GET", "/upgrade-risks-prediction", json={"risks": []})
-        assert response.status_code == 200
-        assert not response.json()["upgrade_recommended"]
-        assert response.json()["upgrade_risks_predictors"] == []
-
     def test_valid_body(self):
         """If the request has an invalid risk it should complain."""
         response = client.request(
-            "GET", "/upgrade-risks-prediction", json={"risks": ["alert|test"]}
+            "GET",
+            "/upgrade-risks-prediction",
+            json=EXAMPLE_PREDICTORS,
         )
         assert response.status_code == 200
         assert not response.json()["upgrade_recommended"]
-        assert response.json()["upgrade_risks_predictors"] == ["alert|test"]
+        assert response.json()["upgrade_risks_predictors"] == EXAMPLE_PREDICTORS

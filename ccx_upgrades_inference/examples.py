@@ -5,18 +5,23 @@ EXAMPLE_PREDICTORS = {
         {
             "name": "APIRemovedInNextEUSReleaseInUse",
             "namespace": "openshift-kube-apiserver",
-            "severity": "info",
-        }
+            "severity": "critical",
+        },
+        {
+            "name": "Other",
+            "namespace": "openshift-other",
+            "severity": "critical",
+        },
     ],
     "operator_conditions": [
-        {"name": "authentication", "condition": "Failing", "reason": "AsExpected"}
+        {"name": "authentication", "condition": "Degraded", "reason": "AsExpected"}
     ],
 }
 
 EXAMPLE_ALERT = {
     "name": "APIRemovedInNextEUSReleaseInUse",
     "namespace": "openshift-kube-apiserver",
-    "severity": "info",
+    "severity": "critical",
 }
 
-EXAMPLE_FOC = {"name": "authentication", "condition": "Failing", "reason": "AsExpected"}
+EXAMPLE_FOC = {"name": "authentication", "condition": "Degraded", "reason": "AsExpected"}

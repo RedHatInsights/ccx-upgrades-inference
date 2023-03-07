@@ -47,7 +47,16 @@ curl -s -X 'GET' \
     'ccx-upgrades-inference-svc:8000/upgrade-risks-prediction' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
-    -d '{"risks": ["foc|machine-config|Available"]}'
+    -d @- << EOF 
+{"alerts":[
+        {"name": "APIRemovedInNextEUSReleaseInUse","namespace": "openshift-kube-apiserver","severity": "critical"},
+        {"name": "Other","namespace": "openshift-other","severity": "critical"}
+    ],
+    "operator_conditions": [
+        {"name": "authentication", "condition": "Degraded", "reason": "AsExpected"}
+    ]
+}
+EOF
 ```
 
 You should see the response. Exit the container using `CTRL+D` or `exit`. The 

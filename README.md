@@ -4,6 +4,17 @@ This is the main reporsitory of the Upgrade Risks Predictions Inference service.
 
 Related Jira: [CCXDEV-9718](https://issues.redhat.com/browse/CCXDEV-9718)
 
+The idea behind this service is to provide a REST API to interact with the
+predictive models that the TDI team will develop for predicting the likelihood
+of an upgrade failure.
+
+The service is deployed as part of the external data pipeline and managed via
+[app-interface](https://redhat.com/service/app-interface/-/blob/master/data/services/insights/ccx-data-pipeline/deploy.yml).
+You can monitor the deployment of this service in [Grafana](https://grafana.app-sre.devshift.net/d/7x_qKqbVz/ccx-upgrade-risks-predictions?orgId=1&var-datasource=crcp01ue1-prometheus&var-namespace=ccx-data-pipeline-prod).
+
+Check the [CONTRIBUTING](CONTRIBUTING.md) for more information about how to
+collaborate.
+
 ## Run it in containers
 
 Use `docker` or `podman`:

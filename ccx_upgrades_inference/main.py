@@ -21,4 +21,4 @@ async def expose_metrics():
 async def upgrade_risks_prediction(risk_predictors: UpgradeRisksPredictors):
     """Return the predition of an upgrade failure given a set of alerts and focs."""
     predictors = static_predictor.predict(risk_predictors)
-    return UpgradeApiResponse(upgrade_recommended=False, upgrade_risks_predictors=predictors)
+    return UpgradeApiResponse(upgrade_risks_predictors=predictors)

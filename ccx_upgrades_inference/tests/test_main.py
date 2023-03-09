@@ -32,5 +32,5 @@ class TestUpgradeRisksPrediction:  # pylint: disable=too-few-public-methods
             json=EXAMPLE_PREDICTORS,
         )
         assert response.status_code == 200
-        assert not response.json()["upgrade_recommended"]
+        assert "upgrade_recommended" not in response.json().keys()
         assert response.json()["upgrade_risks_predictors"] == EXAMPLE_PREDICTORS

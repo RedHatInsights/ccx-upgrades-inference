@@ -24,7 +24,5 @@ def test_foc():
 
 def test_upgrade_api_response():
     """Test the UpgradeApiResponse can be created and fields are populated."""
-    response = UpgradeApiResponse(
-        upgrade_recommended=False, upgrade_risks_predictors=EXAMPLE_PREDICTORS
-    )
+    response = UpgradeApiResponse(upgrade_risks_predictors=EXAMPLE_PREDICTORS)
     assert response.upgrade_risks_predictors == EXAMPLE_PREDICTORS

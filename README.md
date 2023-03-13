@@ -49,7 +49,7 @@ curl -X 'GET' \
     }
   ],
   "operator_conditions": [
-    {"name": "authentication", "condition": "Failing", "reason": "AsExpected"}
+    {"name": "authentication", "condition": "Degraded", "reason": "AsExpected"}
   ]
 }'
 ```

@@ -42,3 +42,20 @@ coverage-checking:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   allow_failure: true
+
+bdd-tests:
+  stage: test
+  image: quay.io/ccxdev/insights-behavioral-spec:ci
+  variables:
+    PATH_TO_LOCAL_INFERENCE_SERVICE: "$CI_PROJECT_DIR"
+    BDD_PATH: /insights-behavioral-spec
+    VIRTUAL_ENV: /insights-behavioral-spec-venv/
+  script:
+    - cd $BDD_PATH
+    - make inference-service-tests
+  artifacts:
+    untracked: true
+    when: on_failure
+    paths:
+      - "$BDD_PATH/logs"
+    expire_in: 1 week

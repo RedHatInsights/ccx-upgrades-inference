@@ -53,9 +53,11 @@ bdd-tests:
   script:
     - cd $BDD_PATH
     - make inference-service-tests
+  after_script:
+    - cp -r "$BDD_PATH/logs/ccx-upgrades-inference" "$CI_PROJECT_DIR/logs"
   artifacts:
     untracked: true
     when: on_failure
     paths:
-      - "$BDD_PATH/logs"
+      - ./logs
     expire_in: 1 week

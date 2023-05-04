@@ -56,19 +56,21 @@ class TestStaticPredictor:  # pylint: disable=too-few-public-methods
         """Test the StaticPredictor.filter_foc function."""
 
         def test_no_available_or_degraded(self):
-            """Check that it doesn't fire if foc is not 'Available' or 'Degraded'."""
+            """Check that it doesn't fire if foc is not 'Not Available' or 'Degraded'."""
             foc = FOC(name="test", condition="test")
 
             assert not static_predictor.filter_foc(
                 foc
-            ), "a non 'Available' or 'Degraded' foc shouldn't fire"
+            ), "a non 'Not Available' or 'Degraded' foc shouldn't fire"
 
-        @pytest.mark.parametrize("condition", ["Available", "Degraded"])
+        @pytest.mark.parametrize("condition", ["Not Available", "Degraded"])
         def test_available_or_degraded(self, condition):
-            """Check that it fires if the foc is one of 'Available' or 'Degraded'."""
+            """Check that it fires if the foc is one of 'Not Available' or 'Degraded'."""
             foc = FOC(name="test", condition=condition)
 
-            assert static_predictor.filter_foc(foc), "an 'Available' or 'Degraded' foc should fire"
+            assert static_predictor.filter_foc(
+                foc
+            ), "an 'Not Available' or 'Degraded' foc should fire"
 
     class TestPredict:  # pylint: disable=too-few-public-methods
         """Test the StaticPredictor.predict function."""
@@ -80,7 +82,7 @@ class TestStaticPredictor:  # pylint: disable=too-few-public-methods
             If firing alerts are < 2, they are not included.
             """
             alert = Alert(name="test", severity="critical", namespace="openshift-test")
-            foc = FOC(name="test", condition="Available")
+            foc = FOC(name="test", condition="Not Available")
             risks = UpgradeRisksPredictors(alerts=[alert], operator_conditions=[foc])
             got = static_predictor.predict(risks)
             assert got == UpgradeRisksPredictors(alerts=[], operator_conditions=[foc])
@@ -112,7 +114,7 @@ class TestStaticPredictor:  # pylint: disable=too-few-public-methods
         def test_predict_foc_fire(self):
             """Check that predict filters the alerts and focs if the foc fires."""
             alert = Alert(name="test", severity="non critical", namespace="openshift-test")
-            foc = FOC(name="test", condition="Available")
+            foc = FOC(name="test", condition="Not Available")
             risks = UpgradeRisksPredictors(alerts=[alert], operator_conditions=[foc])
             got = static_predictor.predict(risks)
             assert got == UpgradeRisksPredictors(alerts=[], operator_conditions=[foc])

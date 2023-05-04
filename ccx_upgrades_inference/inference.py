@@ -41,7 +41,7 @@ class StaticPredictor:
 
     def filter_foc(self, foc: FOC) -> bool:
         """Return True if the FOC matches any of the conditions."""
-        return foc.condition in ["Available", "Degraded"]
+        return foc.condition in ["Not Available", "Degraded"]
 
     def predict(self, risks: UpgradeRisksPredictors) -> UpgradeRisksPredictors:
         """

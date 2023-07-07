@@ -4,9 +4,11 @@ from fastapi import FastAPI
 
 from ccx_upgrades_inference.models import UpgradeApiResponse, UpgradeRisksPredictors
 from ccx_upgrades_inference.inference import StaticPredictor
+from ccx_upgrades_inference.logging_utils import setup_watchtower
 
 from prometheus_fastapi_instrumentator import Instrumentator
 
+setup_watchtower()
 app = FastAPI()
 static_predictor = StaticPredictor()
 

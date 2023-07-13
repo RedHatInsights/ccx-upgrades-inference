@@ -209,3 +209,6 @@ parameters:
 - description: ClowdEnv Name
   name: ENV_NAME
   required: true
+- description: Logging level
+  name: LOG_LEVEL
+  value: INFO

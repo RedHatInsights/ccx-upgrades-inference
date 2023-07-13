@@ -76,7 +76,7 @@ objects:
           env:
             # Cloudwatch logging
             - name: LOGGING_TO_CW_ENABLED
-              value: "True"
+              value: "${LOGGING_TO_CW_ENABLED}"
             - name: CW_STREAM_NAME
               value: ccx-upgrades-inference
             - name: CW_AWS_REGION_NAME
@@ -112,12 +112,12 @@ objects:
           volumes:
           - name: config
             configMap:
-              name: logging-config
+              name: logging-config-ccx-upgrades-inference
 
 - kind: ConfigMap
   apiVersion: v1
   metadata:
-    name: logging-config
+    name: logging-config-ccx-upgrades-inference
     labels:
       app: ccx-upgrades-inference
   data:
@@ -212,3 +212,6 @@ parameters:
 - description: Logging level
   name: LOG_LEVEL
   value: INFO
+- description: Whether to log into CW
+  name: LOGGING_TO_CW_ENABLED
+  value: 'True'

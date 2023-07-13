@@ -30,4 +30,4 @@ USER 1001
 
 EXPOSE 8000
 
-CMD ["uvicorn", "ccx_upgrades_inference.main:app", "--host=0.0.0.0", "--port=8000"]
+CMD ["uvicorn", "ccx_upgrades_inference.main:app", "--host=0.0.0.0", "--port=8000", "--log-config=logging.yaml"]

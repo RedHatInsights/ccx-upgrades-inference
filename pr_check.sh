@@ -24,7 +24,7 @@ REF_ENV="insights-production"
 COMPONENT_NAME="ccx-upgrades-inference"  # name of app-sre "resourceTemplate" in deploy.yaml for this component
 IMAGE="quay.io/cloudservices/ccx-upgrades-inference"
 COMPONENTS="ccx-upgrades-data-eng ccx-upgrades-inference insights-results-smart-proxy ccx-mock-ams ccx-upgrades-rhobs-mock ccx-upgrades-sso-mock" # space-separated list of components to laod
-COMPONENTS_W_RESOURCES="ccx_upgrades_inference"  # component to keep
+COMPONENTS_W_RESOURCES="ccx-upgrades-inference"  # component to keep
 CACHE_FROM_LATEST_IMAGE="true"
 DEPLOY_FRONTENDS="true"   # enable for front-end/UI tests
 

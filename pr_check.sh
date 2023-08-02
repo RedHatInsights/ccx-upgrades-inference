@@ -71,4 +71,3 @@ deploy_ephemeral
 
 echo "PR smoke tests disabled"
 run_smoke_tests
-

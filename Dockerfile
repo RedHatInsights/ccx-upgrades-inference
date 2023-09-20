@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8-minimal:8.8-1037
+FROM registry.access.redhat.com/ubi8-minimal:8.8-1072
 
 ENV VENV=/ccx-upgrades-inference-venv \
     HOME=/ccx-upgrades-inference

@@ -1,14 +1,18 @@
 """Definition of the REST API for the inference service."""
 
+import os
+
 from fastapi import FastAPI
 
 from ccx_upgrades_inference.models import UpgradeApiResponse, UpgradeRisksPredictors
 from ccx_upgrades_inference.inference import StaticPredictor
+from ccx_upgrades_inference.sentry import init_sentry
 
 from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
 static_predictor = StaticPredictor()
+init_sentry(os.environ.get("SENTRY_DSN", None), None, os.environ.get("SENTRY_ENVIRONMENT", None))
 
 
 @app.on_event("startup")

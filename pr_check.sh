@@ -27,6 +27,9 @@ COMPONENTS="ccx-upgrades-data-eng ccx-upgrades-inference ccx-redis ccx-smart-pro
 COMPONENTS_W_RESOURCES="ccx-upgrades-inference"  # component to keep
 CACHE_FROM_LATEST_IMAGE="true"
 DEPLOY_FRONTENDS="false"
+# Set the correct images for pull requests.
+# pr_check in pull requests still uses the old cloudservices images
+EXTRA_DEPLOY_ARGS="--set-parameter ccx-upgrades-inference/IMAGE=quay.io/cloudservices/ccx-upgrades-inference"
 
 export IQE_PLUGINS="ccx"
 # Run all pipeline and ui tests

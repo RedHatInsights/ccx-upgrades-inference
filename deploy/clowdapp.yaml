@@ -203,7 +203,7 @@ objects:
 parameters:
 - description: Image name
   name: IMAGE
-  value: quay.io/cloudservices/ccx-upgrades-inference
+  value: quay.io/redhat-services-prod/obsint-processing-tenant/upgrades-inference/upgrades-inference
 - description: Image tag
   name: IMAGE_TAG
   required: true

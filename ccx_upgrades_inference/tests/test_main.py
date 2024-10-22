@@ -16,13 +16,13 @@ class TestUpgradeRisksPrediction:  # pylint: disable=too-few-public-methods
         """If the request has no body it should return a 422."""
         response = client.get("/upgrade-risks-prediction")
         assert response.status_code == 422
-        assert response.json()["detail"][0]["msg"] == "field required"
+        assert response.json()["detail"][0]["msg"] == "Field required"
 
     def test_unexpected_body(self):
         """If the request has an unexpected body it should return a 422."""
         response = client.request("GET", "/upgrade-risks-prediction", json={"foo": "bar"})
         assert response.status_code == 422
-        assert response.json()["detail"][0]["msg"] == "field required"
+        assert response.json()["detail"][0]["msg"] == "Field required"
 
     def test_valid_body(self):
         """If the request has an invalid risk it should complain."""

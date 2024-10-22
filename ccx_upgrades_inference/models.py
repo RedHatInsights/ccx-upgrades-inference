@@ -10,7 +10,7 @@ class Alert(BaseModel):  # pylint: disable=too-few-public-methods
     """Alert containing name, namespace and severity."""
 
     name: str
-    namespace: Optional[str]
+    namespace: Optional[str] = None
     severity: str
 
     class Config:  # pylint: disable=too-few-public-methods
@@ -24,7 +24,7 @@ class FOC(BaseModel):  # pylint: disable=too-few-public-methods
 
     name: str
     condition: str
-    reason: Optional[str]
+    reason: Optional[str] = None
 
     class Config:  # pylint: disable=too-few-public-methods
         """Update the configuration with an example."""

@@ -597,7 +597,8 @@ spec:
         optional: true
       - name: netrc
         optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-upgrades-inference
   workspaces:
     - name: workspace
       volumeClaimTemplate:

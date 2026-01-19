@@ -5,7 +5,6 @@ import pytest
 from ccx_upgrades_inference.inference import StaticPredictor, EXCLUDE_NAMESPACES
 from ccx_upgrades_inference.models import Alert, FOC, UpgradeRisksPredictors
 
-
 static_predictor = StaticPredictor()
 
 

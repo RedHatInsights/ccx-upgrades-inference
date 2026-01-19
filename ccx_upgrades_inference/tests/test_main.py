@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 from ccx_upgrades_inference.main import app
 from ccx_upgrades_inference.examples import EXAMPLE_PREDICTORS
 
-
 client = TestClient(app)
 
 

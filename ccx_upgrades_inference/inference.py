@@ -6,7 +6,6 @@ They are used for calculating the risk of an upgrade failure.
 
 from ccx_upgrades_inference.models import UpgradeRisksPredictors, Alert, FOC
 
-
 EXCLUDE_NAMESPACES = [
     "openshift-cnv",
     "openshift-compliance",

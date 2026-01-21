@@ -2,7 +2,7 @@
 
 ## Testing
 
-All changes in the code are checked once they reach the public Gitlab repo. Make
+All changes in the code are checked once they reach the GitHub repo. Make
 sure to run `pre-commit run --all` and `pytest` before pushing any commit.
 
 You can also run and create [BDD tests](https://github.com/RedHatInsights/insights-behavioral-spec/tree/main/features/ccx-upgrades-inference)

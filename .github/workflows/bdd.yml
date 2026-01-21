@@ -21,8 +21,10 @@ jobs:
         run: cd $BDD_PATH && make inference-service-tests
       - name: Rename logs
         # Otherwise the upload-artifact action will complain
+        if: failure()
         run: for filename in "$BDD_PATH"/logs/ccx-upgrades-inference/*; do mv -n "$filename" "$(echo "$filename" | sed -e 's/["><]//g')"; done
       - uses: actions/upload-artifact@v5
+        if: failure()
         with:
           name: bdd-logs
           path: /insights-behavioral-spec/logs/ccx-upgrades-inference

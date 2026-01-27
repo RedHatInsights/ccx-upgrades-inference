@@ -15,7 +15,6 @@ jobs:
     if: |
       github.event.pull_request.user.login == 'red-hat-konflux[bot]' &&
       startsWith(github.event.pull_request.head.ref, 'konflux/mintmaker/main/') &&
-      !contains(substring(github.event.pull_request.head.ref, 24), '/') &&
       github.event.pull_request.head.repo.full_name == github.repository
     steps:
       # NOTE: PR approval does not work on PRs from forks

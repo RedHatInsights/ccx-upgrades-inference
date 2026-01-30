@@ -17,6 +17,15 @@ jobs:
       startsWith(github.event.pull_request.head.ref, 'konflux/mintmaker/main/') &&
       github.event.pull_request.head.repo.full_name == github.repository
     steps:
+      - name: Verify branch is protected (avoid merging konflux/mintmaker/main/my/branch)
+        run: |
+          PROTECTED=$(gh api repos/${{ github.repository }}/branches/${{ github.event.pull_request.head.ref }} --jq .protected)
+          if [ "$PROTECTED" != "true" ]; then
+            echo "Branch ${{ github.event.pull_request.head.ref }} is not protected. Refusing to auto-merge."
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
       # NOTE: PR approval does not work on PRs from forks
       - name: Github Actions bot approves the PR
         run: gh pr review --approve "$PR_URL"

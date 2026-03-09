@@ -2,12 +2,12 @@ name: BDD Tests
 
 on:
   push:
-    # branches: ["main", "master"]
+    branches: ["main", "master"]
   pull_request:
 
 jobs:
   bdd:
     name: BDD tests
-    uses: joselsegura/processing-tools/.github/workflows/bdd.yaml@urp-inference-adapt
+    uses: RedHatInsights/processing-tools/.github/workflows/bdd.yaml@master
     with:
       service: inference-service

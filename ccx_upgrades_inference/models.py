@@ -1,16 +1,19 @@
 """Models to be used in the REST API."""
 
-from typing import List, Optional
 from pydantic import BaseModel  # pylint: disable=no-name-in-module
 
-from ccx_upgrades_inference.examples import EXAMPLE_ALERT, EXAMPLE_FOC, EXAMPLE_PREDICTORS
+from ccx_upgrades_inference.examples import (
+    EXAMPLE_ALERT,
+    EXAMPLE_FOC,
+    EXAMPLE_PREDICTORS,
+)
 
 
 class Alert(BaseModel):  # pylint: disable=too-few-public-methods
     """Alert containing name, namespace and severity."""
 
     name: str
-    namespace: Optional[str] = None
+    namespace: str | None = None
     severity: str
 
     class Config:  # pylint: disable=too-few-public-methods
@@ -24,7 +27,7 @@ class FOC(BaseModel):  # pylint: disable=too-few-public-methods
 
     name: str
     condition: str
-    reason: Optional[str] = None
+    reason: str | None = None
 
     class Config:  # pylint: disable=too-few-public-methods
         """Update the configuration with an example."""
@@ -35,13 +38,12 @@ class FOC(BaseModel):  # pylint: disable=too-few-public-methods
 class UpgradeRisksPredictors(BaseModel):
     """A dict containing list of alerts and FOCs."""
 
-    alerts: List[Alert]
-    operator_conditions: List[FOC]
+    alerts: list[Alert]
+    operator_conditions: list[FOC]
 
 
 class UpgradeApiResponse(BaseModel):  # pylint: disable=too-few-public-methods
-    """
-    UpgradeApiResponse is the response for the upgrade-risks-prediction endpoint.
+    """UpgradeApiResponse is the response for the upgrade-risks-prediction endpoint.
 
     Contains the predictors that the model detected as actual risks.
     """

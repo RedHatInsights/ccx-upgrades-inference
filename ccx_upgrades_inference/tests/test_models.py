@@ -1,7 +1,7 @@
 """Test models.py."""
 
-from ccx_upgrades_inference.models import Alert, FOC, UpgradeApiResponse
 from ccx_upgrades_inference.examples import EXAMPLE_PREDICTORS
+from ccx_upgrades_inference.models import FOC, Alert, UpgradeApiResponse
 
 
 def test_alert():

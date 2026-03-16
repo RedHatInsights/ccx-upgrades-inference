@@ -24,4 +24,8 @@ EXAMPLE_ALERT = {
     "severity": "critical",
 }
 
-EXAMPLE_FOC = {"name": "authentication", "condition": "Degraded", "reason": "AsExpected"}
+EXAMPLE_FOC = {
+    "name": "authentication",
+    "condition": "Degraded",
+    "reason": "AsExpected",
+}

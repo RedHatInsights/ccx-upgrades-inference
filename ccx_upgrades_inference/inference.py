@@ -1,10 +1,9 @@
-"""
-This module contains the definition of the Machine Learning/static predictors.
+"""Module containing the definition of the Machine Learning/static predictors.
 
 They are used for calculating the risk of an upgrade failure.
 """
 
-from ccx_upgrades_inference.models import UpgradeRisksPredictors, Alert, FOC
+from ccx_upgrades_inference.models import FOC, Alert, UpgradeRisksPredictors
 
 EXCLUDE_NAMESPACES = [
     "openshift-cnv",
@@ -25,7 +24,7 @@ EXCLUDE_NAMESPACES = [
 
 
 class StaticPredictor:
-    """This predictor uses basic filters to detect risks."""
+    """Predictor that uses basic filters to detect risks."""
 
     def filter_alert(self, alert: Alert) -> bool:
         """Return True if the alert matches any of the conditions."""
@@ -43,19 +42,21 @@ class StaticPredictor:
         return foc.condition in ["Not Available", "Degraded"]
 
     def predict(self, risks: UpgradeRisksPredictors) -> UpgradeRisksPredictors:
-        """
-        Filter the `risks` with the alerts and FOCs queries.
+        """Filter the `risks` with the alerts and FOCs queries.
 
         Return those elements that are likely to make the upgrade fail.
         """
-        suspicious_alerts = [alert for alert in risks.alerts if self.filter_alert(alert)]
+        suspicious_alerts = [
+            alert for alert in risks.alerts if self.filter_alert(alert)
+        ]
         suspicious_operators_conditions = [
             foc for foc in risks.operator_conditions if self.filter_foc(foc)
         ]
 
         if len(suspicious_alerts) < 2:
-            suspicious_alerts = list()
+            suspicious_alerts = []
 
         return UpgradeRisksPredictors(
-            alerts=suspicious_alerts, operator_conditions=suspicious_operators_conditions
+            alerts=suspicious_alerts,
+            operator_conditions=suspicious_operators_conditions,
         )

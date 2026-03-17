@@ -2,8 +2,8 @@
 
 from fastapi.testclient import TestClient
 
-from ccx_upgrades_inference.main import app
 from ccx_upgrades_inference.examples import EXAMPLE_PREDICTORS
+from ccx_upgrades_inference.main import app
 
 client = TestClient(app)
 
@@ -19,7 +19,9 @@ class TestUpgradeRisksPrediction:  # pylint: disable=too-few-public-methods
 
     def test_unexpected_body(self):
         """If the request has an unexpected body it should return a 422."""
-        response = client.request("GET", "/upgrade-risks-prediction", json={"foo": "bar"})
+        response = client.request(
+            "GET", "/upgrade-risks-prediction", json={"foo": "bar"}
+        )
         assert response.status_code == 422
         assert response.json()["detail"][0]["msg"] == "Field required"
 
@@ -31,5 +33,5 @@ class TestUpgradeRisksPrediction:  # pylint: disable=too-few-public-methods
             json=EXAMPLE_PREDICTORS,
         )
         assert response.status_code == 200
-        assert "upgrade_recommended" not in response.json().keys()
+        assert "upgrade_recommended" not in response.json()
         assert response.json()["upgrade_risks_predictors"] == EXAMPLE_PREDICTORS

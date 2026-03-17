@@ -1,17 +1,18 @@
 """Definition of the REST API for the inference service."""
 
 import os
-
-from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-from ccx_upgrades_inference.models import UpgradeApiResponse, UpgradeRisksPredictors
-from ccx_upgrades_inference.inference import StaticPredictor
-from ccx_upgrades_inference.sentry import init_sentry
-
+from fastapi import FastAPI
 from prometheus_fastapi_instrumentator import Instrumentator
 
-init_sentry(os.environ.get("SENTRY_DSN", None), None, os.environ.get("SENTRY_ENVIRONMENT", None))
+from ccx_upgrades_inference.inference import StaticPredictor
+from ccx_upgrades_inference.models import UpgradeApiResponse, UpgradeRisksPredictors
+from ccx_upgrades_inference.sentry import init_sentry
+
+init_sentry(
+    os.environ.get("SENTRY_DSN", None), None, os.environ.get("SENTRY_ENVIRONMENT", None)
+)
 
 
 def create_lifespan_handler(instrumentator: Instrumentator):

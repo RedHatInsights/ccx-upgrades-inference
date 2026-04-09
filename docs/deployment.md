@@ -47,7 +47,7 @@ curl -s -X 'GET' \
     'ccx-upgrades-inference-svc:8000/upgrade-risks-prediction' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
-    -d @- << EOF 
+    -d @- << EOF
 {"alerts":[
         {"name": "APIRemovedInNextEUSReleaseInUse","namespace": "openshift-kube-apiserver","severity": "critical"},
         {"name": "Other","namespace": "openshift-other","severity": "critical"}
@@ -59,11 +59,11 @@ curl -s -X 'GET' \
 EOF
 ```
 
-You should see the response. Exit the container using `CTRL+D` or `exit`. The 
+You should see the response. Exit the container using `CTRL+D` or `exit`. The
 pod is automatically deleted.
 
 6. Delete the namespace
 
 ```
-bonfire namespace release $NAMESPACE 
+bonfire namespace release $NAMESPACE
 ```

@@ -12,9 +12,8 @@ ENV PATH="$VENV/bin:$PATH"
 
 RUN microdnf install --nodocs --noplugins -y python3.11 git-core &&\
     python3.11 -m venv $VENV &&\
-    pip install --verbose --no-cache-dir -U pip setuptools wheel &&\
-    pip install --verbose --no-cache-dir -r requirements.txt &&\
-    pip install .
+    pip install --no-cache-dir -U pip &&\
+    pip install --no-cache-dir .
 
 # Clean up not necessary packages for runtime
 # remove py if present as it is not maintained and vulnerable (https://pypi.org/project/py/)

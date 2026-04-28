@@ -13,7 +13,5 @@ jobs:
   test:
     uses: RedHatInsights/processing-tools/.github/workflows/pytests.yaml@master
     with:
-      packages: ccx_upgrades_inference
-      install_package: true
       cov_branch: true
     secrets: inherit
